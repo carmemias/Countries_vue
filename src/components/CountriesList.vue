@@ -1,24 +1,21 @@
 <template lang="html">
 <div class="">
   <select v-on:change="handleChange">
-    <list-item v-for="(country, index) in countries" :key="index" :country="country" ></list-item>
+    <option disable value=''>Select a country...</option>
+    <option v-for="(country, index) in countries" :key="index" :value="index" >{{country.name}}</option>
   </select>
 </div>
 </template>
 
 <script>
-import ListItem from './ListItem.vue';
 import {eventBus} from '../main.js'
 
 export default {
   name: 'countries-list',
   props: ['countries'],
-  components: {
-    'list-item': ListItem,
-  },
   methods: {
     handleChange(){
-      eventBus.$emit('clicked-country', countr)
+      eventBus.$emit('clicked-country', this.countries[event.target.value])
     }
   }
 }

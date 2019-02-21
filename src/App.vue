@@ -2,6 +2,7 @@
   <div>
     <h1>Countries</h1>
     <div class="main-container">
+    <search-box :countries='countries'></search-box>
     <countries-list :countries='countries'></countries-list>
     <country-details :country='selectedCountry'></country-details>
     </div>
@@ -11,7 +12,9 @@
 <script>
 import CountriesList from './components/CountriesList.vue';
 import CountryDetails from './components/CountryDetails.vue';
+import SearchBox from './components/SearchBox.vue';
 import {eventBus} from './main.js';
+
 
 export default {
   data(){
@@ -22,7 +25,8 @@ export default {
   },
   components: {
     "countries-list": CountriesList,
-    "country-details": CountryDetails
+    "country-details": CountryDetails,
+    "search-box": SearchBox
   },
   mounted(){
     fetch('https://restcountries.eu/rest/v2/all')
